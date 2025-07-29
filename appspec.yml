@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: target/demo-0.0.1-SNAPSHOT.jar
+    destination: /home/ec2-user/demo
+hooks:
+  AfterInstall:
+    - location: scripts/start_server.sh
+      timeout: 60
+      runas: ec2-user
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 60
+      runas: ec2-user
